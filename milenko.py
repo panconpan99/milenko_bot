@@ -1,43 +1,37 @@
 import os
 import discord 
 from dotenv import load_dotenv
-from discord import client, message, user
+import random
+import youtube_dl
 from discord.ext import commands
-from discord.ext.commands import CommandNotFound
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix = '!' )
 
 @bot.event
 async def on_ready():
-    print("listo")
-
-@bot.command()
-async def foo(ctx,* , arg):
-    print("prueba")
-    await ctx.send(arg)
+    print("ready")
 
 @bot.command()
 async def test(ctx):
-    await ctx.send("its works")
+    await ctx.send("sim")
 
-@bot.event
-async def on_member_join(member):
-    await member.channel.send("bienvenido a este sv de prueba")
+@bot.command()
+async def hagalo_usted_mismo(ctx):
+    await ctx.send("chao jasmina")
 
-@bot.event
-async def on_message(message):
-    if message.author == user :
-        return
-    if message.content == "hagalo usted mismo":
-        await message.channel.send("chao jasmina")
-    if message.content =="hola":
-        await message.channel.send("pati mi cola")
-    if message.content =="qlo":
-        await message.channel.send("voh mismo")
-    if message.content =="#dm":
-        #aca hice trampra ekisde
-        await message.author.send( "funciono, a medias")
+@bot.command(help_command= "tira una moneda")
+async def coin(ctx,* ,msg):
+    var=["verdadero","falso"]
+    await ctx.send("{}".format(random.choice(var)))
 
+#music
+
+
+@bot.command(pass_context = True)
+async def play(ctx, url_: str):
+    voice = discord.utils.get(ctx.guild.voicechannel,name='general')
+    voice = discord.utils.get(bot.voice_clients, guild = ctx.guild)
+    await voice.connect()
 
 
 load_dotenv()
