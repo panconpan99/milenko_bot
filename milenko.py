@@ -5,7 +5,6 @@ from discord import client, message, user
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
 
-intents = discord.Intents().all()
 bot = commands.Bot(command_prefix='!')
 
 @bot.event
@@ -13,13 +12,12 @@ async def on_ready():
     print("listo")
 
 @bot.command()
-async def foo(ctx, arg):
+async def foo(ctx,* , arg):
     print("prueba")
     await ctx.send(arg)
 
 @bot.command()
 async def test(ctx):
-    print("entro")
     await ctx.send("its works")
 
 @bot.event
@@ -37,6 +35,7 @@ async def on_message(message):
     if message.content =="qlo":
         await message.channel.send("voh mismo")
     if message.content =="#dm":
+        #aca hice trampra ekisde
         await message.author.send( "funciono, a medias")
 
 
