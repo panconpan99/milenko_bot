@@ -1,0 +1,22 @@
+eightball=[
+    "En mi opinion, si",
+    "Es cierto",
+    "Es decididamente asi",
+    "Probablemente",
+    "Buen pronostico",
+    "Todo apunta a que si",
+    "Sin duda",
+    "Si",
+    "Definitavemte que si",
+    "Debes confiar en ello",
+    "Respuesta vaga, vuelve a intentarlo",
+    "Pregunta en otro momento",
+    "Será mejor que no te lo diga ahora",
+    "No puedo predecir eso",
+    "Concentrate y vuelve a preguntar",
+    "No cuentes con ello",
+    "No",
+    "Mis fuentes dicen que no",
+    "las perspectivas no son buenas",
+    "Lo dudo"
+]
