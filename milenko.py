@@ -27,7 +27,7 @@ async def on_command_error(ctx,error):
         msg = await ctx.send(random.choice(MESSAGES))
 
 
-@bot.command(name= 'test', help = 'prueba de test')
+@bot.command(name= 'test', hidden=True)
 async def test(ctx):
     await ctx.send("funciona")
 
@@ -37,19 +37,22 @@ async def hagalo_usted_mismo(ctx):
 
 #suerte
 
-@bot.command(help = "tira una moneda")
+@bot.command(help = "Tira una moneda")
 async def coin(ctx,* ,msg):
     var=["verdadero","falso"]
     await ctx.send("{}".format(random.choice(var)))
 
-@bot.command(help = "prueba tu suerte")
+@bot.command(help = "Prueba tu suerte")
 async def magicball(ctx,* ,msg):
-    choice = await ctx.send("la bola magica dice  '{}' ".format(random.choice(eightball)))
+    if msg[-1]=='?':
+        choice = await ctx.send("la bola magica dice  '{}' ".format(random.choice(eightball)))
+    else :
+        await ctx.send("no es pregunta")
 
 
 #finder
 
-@bot.command()
+@bot.command(help = "busqueda en youtube")
 async def youtube(ctx, *, search):
     result = youtube_request(search)
     msg = await ctx.send(result)
@@ -61,7 +64,7 @@ async def on_reaction_add(reaction, user):
     user_list =await reaction.users().flatten()
     msg = reaction.message
     emoji = reaction.emoji
-    if  emoji=="🗑️" and user_list[0].bot == True and user_list[1].bot == False:
+    if  emoji=="🗑️" and reaction.count > 1 and user_list[0].bot == True and user_list[1].bot == False:
         await msg.delete()
 
 #music
@@ -79,6 +82,17 @@ async def leave(ctx):
     voice_client = ctx.message.guild.voice_client
     await voice_client.disconnect()
 
+@bot.command(help = 'Muestra los creditos del bot')
+async def credits(ctx):
+    blue_color = str("""```css\nThis is some colored Text```""")
+    embed=discord.Embed(title="milenko bot",value = blue_color ,description="pequeño bot con gran potencial", color=0x052fff)
+    embed.set_author(name="Creditos")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/269286302141251585/812540021168013352/NO.png")
+    embed.add_field(name="Beta dummies", value="Barry y Jordanox", inline=True)
+    embed.add_field(name="Programador", value="Panconpan", inline=True)
+    embed.add_field(name="Github", value="https://github.com/panconpan99/milenko_bot", inline=False)
+    embed.set_footer(text="Con mas cosas que agregar")
+    await ctx.send(embed=embed)
 
 load_dotenv()
 key=os.getenv('DISCORD_TOKEN')
