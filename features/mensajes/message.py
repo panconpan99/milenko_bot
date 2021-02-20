@@ -8,5 +8,6 @@ MESSAGES = [
     "suerte con eso",
     "ya..",
     "que dijiste de mi mama?",
-    "el primer paso siempre es dificil"
+    "el primer paso siempre es dificil",
+    "la tuya por si acaso"
 ]
